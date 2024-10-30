@@ -1,9 +1,11 @@
-import { Menu, Minus, Square, X } from "lucide-react";
+import { Minus, Square, X } from "lucide-react";
 import styles from "./style.module.css";
+import { ReactNode } from "react";
 
 interface TitlebarProps {
   title?: string;
   draggable?: boolean;
+  icon?: ReactNode;
   onMinimize?: () => void;
   onMaximize?: () => void;
   onClose?: () => void;
@@ -12,6 +14,7 @@ interface TitlebarProps {
 export default function TitleBar({
   title = "Electron App",
   draggable = false,
+  icon,
   onMinimize = () => {},
   onMaximize = () => {},
   onClose = () => {},
@@ -23,7 +26,7 @@ export default function TitleBar({
       <div
         className={`flex items-center px-2 h-full ${styles["non-draggable"]}`}
       >
-        <Menu className="h-4 w-4 mr-2" />
+        {icon}
         <span className="text-sm font-semibold">{title}</span>
       </div>
       <div className={`flex ${styles["non-draggable"]}`}>
